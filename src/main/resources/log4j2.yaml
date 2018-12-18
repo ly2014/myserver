@@ -1,0 +1,53 @@
+Configuartion:
+  status: error
+  monitorInterval: 300
+  properties:
+    property:
+      name: filename
+      value: logs/info.log
+  thresholdFilter:
+    level: debug
+
+  Appenders:
+    Console:
+      name: STDOUT
+      PatternLayout:
+        Pattern: "%d{yyyy-MM-dd HH:mm:ss.SSS} -%5p [%15.15t] [%-30.30C{1.}] : %m%n"
+    RollingRandomAccessFile:
+      name: File
+      fileName: ${filename}
+      filePattern: "logs/$${date:yyyy-MM}/%d{yyyy-MM-dd}.info.%i.log"
+      PatternLayout:
+        Pattern: "%d{yyyy-MM-dd HH:mm:ss.SSS} -%5p [%15.15t] [%-30.30C{1.}] : %m%n"
+      Filters:
+        ThresholdFilter:
+          level: debug
+      Policies:
+        CronTriggeringPolicy:
+          schedule: "0 0 0 * * ?" # 每天0点翻滚一次
+        SizeBasedTriggeringPolicy:
+          size: "10MB"
+      DefaultRolloverStrategy:     # 文件最多100个
+        max: 100
+
+  Loggers:
+    logger:
+      -
+        name: log1
+        level: debug
+        additivity: false
+        AppenderRef:
+          ref: STDOUT
+
+      -
+        name: log2
+        level: debug
+        additivity: false
+        AppenderRef:
+          ref: File
+
+    Root:
+      level: info
+      AppenderRef:
+        - ref: STDOUT
+        - ref: File
