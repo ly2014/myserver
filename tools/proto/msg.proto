@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package com.ly;
+option java_package = "com.ly";
+option java_outer_classname = "MSG";
+
+enum MNUM {
+    MHeartRequest = 0;
+    MHeartResponse = 1;
+
+    MLoginRequest = 1000;
+    MLoginResponse = 1001;
+    MRegisterRequest = 1002;
+    MRegisterResponse = 1003;
+}
+
+enum RCode {
+    SUCCESS = 0;
+    Fail = 1;
+}

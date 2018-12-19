@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+import "msg.proto";
+package com.ly;
+option java_package = "com.ly";
+option java_outer_classname = "MainMessage";
+
+message HeartRequest {
+    MNUM type = 1;
+}
+
+message HeartResponse {
+    RCode code = 1;
+}
+
+message LoginRequest {
+    MNUM type = 1;
+    string username = 2;
+    string password = 3;
+}
+
+message LoginResponse {
+    MNUM type = 1;
+    RCode code = 2;
+    string tip = 3;
+}
