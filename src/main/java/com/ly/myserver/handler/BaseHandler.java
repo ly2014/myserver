@@ -1,6 +1,6 @@
 package com.ly.myserver.handler;
 
-import com.ly.core.MyMessage;
+import com.ly.myserver.core.MyMessage;
 import io.netty.channel.Channel;
 
 /**

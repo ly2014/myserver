@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package com.ly;
-option java_package = "com.ly";
+option java_package = "com.ly.myserver";
 option java_outer_classname = "MSG";
 
 enum MNUM {

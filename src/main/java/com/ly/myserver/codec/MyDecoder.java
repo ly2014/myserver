@@ -1,15 +1,15 @@
 package com.ly.myserver.codec;
 
-import com.ly.core.MyMessage;
-import com.ly.util.MappingManager;
+import com.ly.myserver.core.MyMessage;
 import io.netty.buffer.ByteBuf;
-import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
 
-import java.lang.reflect.Method;
 import java.util.List;
-
+/**
+ * @author ying
+ * @date 2018-12-19 10:00
+ */
 public class MyDecoder extends ByteToMessageDecoder {
     @Override
     protected void decode(ChannelHandlerContext channelHandlerContext, ByteBuf byteBuf, List<Object> list) throws Exception {
@@ -39,7 +39,6 @@ public class MyDecoder extends ByteToMessageDecoder {
             byteBuf.readBytes(body);
             MyMessage msg = new MyMessage(type, sessionId, body);
             list.add(msg);
-
         }
     }
 }

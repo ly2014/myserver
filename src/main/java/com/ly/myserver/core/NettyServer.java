@@ -1,5 +1,7 @@
-package com.ly.myserver.main;
+package com.ly.myserver.core;
 
+import com.ly.myserver.codec.MyDecoder;
+import com.ly.myserver.codec.MyEncoder;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -28,9 +30,9 @@ public class NettyServer {
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         public void initChannel(SocketChannel ch) throws Exception {
-//                            ch.pipeline().addLast(new MyDecoder())
-//                                    .addLast(new MyEncoder())
-//                                    .addLast(new ServerHandler());
+                            ch.pipeline().addLast(new MyDecoder())
+                                    .addLast(new MyEncoder())
+                                    .addLast(new ServerHandler());
                         }
                     })
                     .option(ChannelOption.SO_BACKLOG, 128)

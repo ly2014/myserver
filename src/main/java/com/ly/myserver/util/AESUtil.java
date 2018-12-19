@@ -7,7 +7,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
 public class AESUtil {
-    private static final String KEY = "poker";
+    private static final String KEY = "server";
 
     /**
      * AES加密或解密字节数组
@@ -17,10 +17,12 @@ public class AESUtil {
      */
     private static byte[] aes(int mode, byte[] content) {
         try {
+            SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
+            random.setSeed(KEY.getBytes());
             //构造密钥生成器，指定为AES算法,不区分大小写
             KeyGenerator kgen = KeyGenerator.getInstance("AES");
             //根据ecnodeRules规则初始化密钥生成器,生成一个128位的随机源,根据传入的字节数组
-            kgen.init(128, new SecureRandom(KEY.getBytes()));
+            kgen.init(128, random);
             //产生原始对称密钥
             SecretKey secretKey = kgen.generateKey();
             //获得原始对称密钥的字节数组
@@ -62,5 +64,15 @@ public class AESUtil {
      */
     public static byte[] decrypt(byte[] content) {
         return aes(Cipher.DECRYPT_MODE, content);
+    }
+
+    public static void main(String[] args) {
+        String s = "abcdefg";
+        byte[] a = s.getBytes();
+        System.out.println(new String(a));
+        byte[] b = AESUtil.encrypt(a);
+        System.out.println(new String(b));
+        byte[] c = AESUtil.decrypt(b);
+        System.out.println(new String(c));
     }
 }

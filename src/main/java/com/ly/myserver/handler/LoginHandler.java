@@ -1,8 +1,8 @@
 package com.ly.myserver.handler;
 
-import com.ly.MSG;
-import com.ly.MainMessage;
-import com.ly.core.MyMessage;
+import com.ly.myserver.MSG;
+import com.ly.myserver.MainMessage;
+import com.ly.myserver.core.MyMessage;
 
 /**
  * @author: ly
@@ -17,6 +17,8 @@ public class LoginHandler extends BaseHandler{
             MainMessage.LoginResponse.Builder builder = MainMessage.LoginResponse.newBuilder();
             String username = loginRequest.getUsername();
             String password = loginRequest.getPassword();
+            System.out.println(username);
+            System.out.println(password);
             String tip = "";
             if("".equals(username) || "".equals(password)) {
                 tip = "用户名或密码不能为空";

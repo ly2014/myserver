@@ -2,7 +2,7 @@ syntax = "proto3";
 
 import "msg.proto";
 package com.ly;
-option java_package = "com.ly";
+option java_package = "com.ly.myserver";
 option java_outer_classname = "MainMessage";
 
 message HeartRequest {

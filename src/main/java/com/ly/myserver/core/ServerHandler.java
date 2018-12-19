@@ -1,5 +1,6 @@
-package com.ly.myserver.main;
+package com.ly.myserver.core;
 
+import com.ly.myserver.event.DispatchMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
@@ -16,11 +17,14 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
+        MyMessage message = (MyMessage)msg;
+        DispatchMessage.dispatch(message, ctx.channel());
         System.out.println("Server channel read");
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         super.exceptionCaught(ctx, cause);
+        System.out.println(cause);
     }
 }

@@ -1,9 +1,8 @@
-package com.ly.myserver.main;
+package com.ly.myserver.core;
 
 /**
- * @author: ly
- * @date: 2018/11/10 16:48:19
- * @description:
+ * @author ying
+ * @date 2018-12-19 10:00
  */
 public class MyMessage{
     private int type;

@@ -15,10 +15,4 @@ public class Util {
         src[3] = (byte) (value & 0xFF);
         return src;
     }
-
-
-
-    public static void main(String[] args) {
-        System.out.println(Util.getUUID());
-    }
 }
